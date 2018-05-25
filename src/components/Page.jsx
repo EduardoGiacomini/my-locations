@@ -6,11 +6,21 @@ import { setLocation } from '../store/actions/index';
 
 import LocationForm from './LocationForm';
 import List from './List';
+import Map from './Map';
+
+const style = {
+    textCenter: {
+        textAlign: 'center'
+    }
+};
 
 class Page extends Component {
     constructor(props) {
         super(props);
-        this.state = { locations: [] };
+        this.state = {
+            locations: [],
+            location: null
+        };
     };
 
     componentDidMount = () => {
@@ -71,17 +81,36 @@ class Page extends Component {
 
     }
 
+    viewLocation = (location) => {
+        this.setState({ location });
+    }
+
+    back = () => {
+        this.setState({ location: null });
+    }
+
     render() {
         return (
             <div className="container">
-                <h2>My Locations</h2>
-                <LocationForm
-                    getValues={this.getValues}
-                />
-                <List
-                    locations={this.props.locations}
-                    delete={this.deleteLocation}
-                />
+                {
+                    this.state.location !== null ?
+                        <Map
+                            back={this.back}
+                            location={this.state.location}
+                        />
+                        :
+                        <div>
+                            <h2 className="u-full-width" style={style.textCenter}>My Locations</h2>
+                            <LocationForm
+                                getValues={this.getValues}
+                            />
+                            <List
+                                locations={this.props.locations}
+                                delete={this.deleteLocation}
+                                view={this.viewLocation}
+                            />
+                        </div>
+                }
             </div>
         );
     }
