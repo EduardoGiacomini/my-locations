@@ -24,24 +24,16 @@ class List extends Component {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    
+
                     this.props.delete(location.id)
-                    
+
                     swal({
                         title: "Poof",
                         text: "Your location has been deleted!",
                         icon: "success",
                         button: "Ok",
-                      });
-                      
-                } else {
-                    swal("Your location is safe!");
-                    swal({
-                        title: "Yeah",
-                        text: "Your location is safe!",
-                        icon: "info",
-                        button: "Ok",
-                      });
+                    });
+
                 }
             });
     }
