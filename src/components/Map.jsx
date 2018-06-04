@@ -15,6 +15,12 @@ const style = {
     },
     textCenter: {
         textAlign: 'center'
+    },
+    containerMap: {
+        height: 'auto',
+        width: 'auto',
+        border: '2px solid red',
+        borderRadius: '10px'
     }
 };
 
@@ -199,20 +205,20 @@ class Map extends Component {
                         </li>
                     </ul>
                 }
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyDO4Ph5tAs_j395-ru85zTSEMos-nA8iA4' }}
-                    defaultCenter={this.props.center}
-                    center={this.state.center}
-                    defaultZoom={this.props.zoom}
-                    zoom={this.state.zoom}
-                    options={this.state.mapStyle}
-                >
-                    <AnyReactComponent
-                        lat={this.props.location.lat}
-                        lng={this.props.location.lng}
-                        pointer={<div><div className='pin bounce'></div><div className='pulse'></div></div>}
-                    />
-                </GoogleMapReact>
+                    <GoogleMapReact
+                        bootstrapURLKeys={{ key: 'AIzaSyDO4Ph5tAs_j395-ru85zTSEMos-nA8iA4' }}
+                        defaultCenter={this.props.center}
+                        center={this.state.center}
+                        defaultZoom={this.props.zoom}
+                        zoom={this.state.zoom}
+                        options={this.state.mapStyle}
+                    >
+                        <AnyReactComponent
+                            lat={this.props.location.lat}
+                            lng={this.props.location.lng}
+                            pointer={<div><div className='pin bounce'></div><div className='pulse'></div></div>}
+                        />
+                    </GoogleMapReact>
             </div>
         )
     }
